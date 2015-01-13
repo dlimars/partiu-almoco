@@ -14,6 +14,12 @@
 		@include("partials.navbar")
 
 		<div class="container">
+            @if(Session::has("login_error"))
+                <div class="alert alert-danger">
+                    {{ Session::get("login_error") }}
+                </div>
+            @endif
+
 			@yield("contents")
 		</div>
 	</body>

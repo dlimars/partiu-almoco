@@ -9,7 +9,7 @@ class AuthController extends BaseController {
 		if (Auth::attempt(['email' => $email, 'password' => $password])) {
 			return Redirect::to('/');
 		}
-		return Redirect::to('/')->with("error", "Falha no login");
+		return Redirect::to('/')->with("login_error", "Verifique suas informações de acesso e tente novamente");
 	}
 
 	public function anyLogout () {

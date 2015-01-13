@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRestaurantsVotationTable extends Migration {
+class CreateRestaurantsVotingTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateRestaurantsVotationTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create("restaurants_votation", function ($table) {
+		Schema::create("restaurants_voting", function ($table) {
 			$table->increments("id");
 			$table->integer("user_id");
 			$table->integer("restaurant_id");
@@ -27,7 +27,7 @@ class CreateRestaurantsVotationTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop("restaurants_votation");
+		Schema::drop("restaurants_voting");
 	}
 
 }
