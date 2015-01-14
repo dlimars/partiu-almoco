@@ -1,21 +1,15 @@
 <?php
 
-class RestaurantVotingValidator extends Illuminate\Validation\Validator {
+class RestaurantVotingValidator {
 
 	public function validateCheckTimeToVote($attribute, $value, $parameters) {
         
-        $dateVoting  = date("Y-m-d", strtotime($value));
+        $dateVoting      = date("Y-m-d", strtotime($value));
         $dateTimeVoting  = date("Y-m-d H:i:s", strtotime($value));
 
-        $maxHour = isset($parameters[0]) ? $dateVoting." ".$parameters[0] : $dateVoting." 11:30:00";
+        $dateMax = isset($parameters[0]) ? $dateVoting." ".$parameters[0] : $dateVoting." 11:30:00";
 
-        $dateMax     = date("Y-m-d ".$maxHour);
-
-        if (date("Y-m-d", strtotime($dateVoting)) == date("Y-m-d", strtotime($dateMax))) {
-            return $dateVoting <= $dateMax;
-        }
-
-        return false;
+        return $dateTimeVoting <= $dateMax;
     }
 
     public function validateCheckUserHasVoted($attribute, $value, $parameters) {
@@ -30,8 +24,6 @@ class RestaurantVotingValidator extends Illuminate\Validation\Validator {
     public function validateCheckRestaurantAvailableToVote($attribute, $value, $parameters) {
 
         $daysOfWeek = App::make("getDaysOfWeek", date("Y-m-d", strtotime($parameters[0])));
-
-        var_dump($daysOfWeek, $parameters);
 
         if (count($daysOfWeek) > 0) {
 
