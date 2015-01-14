@@ -14,6 +14,12 @@ c:\PartiuAlmoco>php artisan serve
 
 Logo após, já é possível abrir o navegador no endereço: **localhost:8000**
 
+dependendo do horário não é possível efetuar a votação, neste caso para efetuar testes, altere o arquivo **app/config/app.php**
+
+```javascript
+#5 'time_to_vote' => '11:30:00',
+```
+
 #####Melhorias
 - [ ] Login utilizando a conta do facebbok
 - [ ] Exibir prato do dia de cada restaurante
