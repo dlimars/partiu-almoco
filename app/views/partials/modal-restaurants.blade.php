@@ -9,15 +9,15 @@
       </div>
       <div class="modal-body">
           <div class="row">
-            @foreach(range(1, 9) as $num)
+            @foreach($restaurants as $restaurant)
                 <div class="col-sm-6 col-md-4">
                   <div class="thumbnail">
-                    <img src="/assets/img/restaurants/restaurant_1.jpg">
+                    <img src="{{ $restaurant->logo_path }}">
                     <div class="caption">
-                    <h3>Thumbnail label</h3>
-                    <p>...</p>
+                    <h3>{{ $restaurant->name }}</h3>
+                    <p>{{ $restaurant->description }}</p>
                     <p>
-                      <a href="#" class="btn btn-primary" role="button">
+                      <a href="{{ URL::to("vote", $restaurant->id) }}" class="btn btn-block btn-primary" role="button">
                         Escolher
                         <i class="glyphicon glyphicon-thumbs-up"></i>
                       </a>

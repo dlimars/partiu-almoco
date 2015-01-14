@@ -1,6 +1,6 @@
 <?php
 
-class RestaurantVotingValidator {
+class RestaurantVotingValidator extends Illuminate\Validation\Validator{
 
 	public function validateCheckTimeToVote($attribute, $value, $parameters) {
         

@@ -25,3 +25,12 @@ App::bind("getDaysOfWeek", function ($app, $day) {
 
 	return $week;
 });
+
+App::bind("userHasVoted", function ($app) {
+	if(Auth::check()) {
+		return RestaurantsVoting::where("user_id", Auth::user()->id)
+							->where("date", date("Y-m-d"))
+							->count() > 0;
+	}
+	return false;
+});

@@ -36,4 +36,23 @@ class RestaurantRepository {
 		}
 		return false;
 	}
+
+	public function getAvailableRestaurants($date) {
+		$daysOfWeek = App::make("getDaysOfWeek", $date);
+
+        if (count($daysOfWeek) > 0) {
+
+            $restaurants = Restaurant::leftJoin("restaurants_voting", "restaurants.id", "=", "restaurant_id")
+                                ->groupBy("restaurant_id, date")
+                                ->selectRaw("restaurants.id, count(*) as count")
+                                ->orderBy("count", "DESC")
+                                ->whereIn("date", $daysOfWeek)
+                                ->get();
+
+            if(count($restaurants) > 0) {
+	            return Restaurant::whereNotIn("id", $restaurants->lists("id"));
+            }
+        }
+        return Restaurant::all();
+	}
 }

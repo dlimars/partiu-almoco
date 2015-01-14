@@ -12,5 +12,6 @@
 */
 
 Route::get('/', "HomeController@showWelcome");
+Route::get('vote/{restaurant_id}', "HomeController@voteForRestaurant");
 
 Route::controller("login","AuthController");
