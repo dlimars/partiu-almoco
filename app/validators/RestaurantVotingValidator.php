@@ -7,7 +7,7 @@ class RestaurantVotingValidator {
         $dateVoting      = date("Y-m-d", strtotime($value));
         $dateTimeVoting  = date("Y-m-d H:i:s", strtotime($value));
 
-        $dateMax = isset($parameters[0]) ? $dateVoting." ".$parameters[0] : $dateVoting." 11:30:00";
+        $dateMax = isset($parameters[0]) ? $dateVoting." ".$parameters[0] : $dateVoting." " . Config::get("app.time_to_vote");
 
         return $dateTimeVoting <= $dateMax;
     }
